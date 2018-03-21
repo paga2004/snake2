@@ -2,7 +2,7 @@ var canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight * 
 var fieldSize = 17;
 var grid = create2dArray(fieldSize,fieldSize);
 var r = canvasSize/fieldSize;
-var cdir, dir;
+var dir;
 var s = new Snake;
 
 
