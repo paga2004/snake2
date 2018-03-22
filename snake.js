@@ -7,18 +7,13 @@ var s = new Snake;
 
 
 function setup() {
-	createCanvas(canvasSize+1, canvasSize+1);
+	createCanvas(canvasSize, canvasSize);
 	background(0);
 	setFrameRate(5);
 }
 
 function draw() {
-	for(var i = 0; i < fieldSize; i++) {
-		for(var j = 0; j < fieldSize; j++) {
-			fill(0);
-			rect(i*r,j*r,r,r)
-		}
-	}
+
 	
 	fill(0,255,0);
 	rect(s.x*r,s.y*r,r,r);
@@ -69,11 +64,5 @@ function Snake() {
 		
 	}
 
-}
 
-function create2dArray(x,y) {
-	a = Array(x);
-	for(var i = 0; i < x; i++) {
-		a[i] = Array(y);
-	}
 }
