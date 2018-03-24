@@ -5,6 +5,7 @@ var r = canvasSize/fieldSize;
 var score = 1;
 var c;
 var s = new Snake, f = new Food;
+var t;
 
 function setup() {
     c = createCanvas(canvasSize, canvasSize)
@@ -48,6 +49,8 @@ function keyPressed() {
 	}
 
 }
+
+
 
 function Snake() {
 	this.x = Math.floor(fieldSize/2);
