@@ -1,14 +1,15 @@
-var canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight * 0.98 : window.innerWidth * 0.98);
+//made by paga2004
+var canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight * 0.97 : window.innerWidth * 0.97);
 var fieldSize = 17;
 var r = canvasSize/fieldSize;
-var dir, score = 1;
+var score = 1;
 
 var s = new Snake, f = new Food;
 
 function setup() {
 	createCanvas(canvasSize, canvasSize);
 	setFrameRate(5);
-	
+   textSize(r);
 }
 
 function draw() {
@@ -17,24 +18,25 @@ function draw() {
 	
 	s.show();
 	f.show();
-	
+	 
+    printScore();
 }
 
 function keyPressed() {
 	if (keyCode === UP_ARROW) {
-		dir = 0;
+		s.ndir = 0;
 	}
 		
 	if (keyCode === RIGHT_ARROW) {
-		dir = 1;
+		s.ndir = 1;
 	}
 	
 	if (keyCode === DOWN_ARROW) {
-		dir = 2;
+        s.ndir = 2;
 	}
 	
 	if (keyCode === LEFT_ARROW) {
-		dir = 3;
+		s.ndir = 3;
 	}
 
 }
@@ -42,10 +44,15 @@ function keyPressed() {
 function Snake() {
 	this.x = Math.floor(fieldSize/2);
 	this.y = Math.floor(fieldSize/2);
+    this.dir;
 	this.tail = [];
 	
 	this.update = function() {
-		switch(dir) {
+        
+        this.dir = (this.legalDir() ? this.ndir : this.dir);
+        
+        
+		switch(this.dir) {
 			case 0: 
 				this.y--;
 				break;
@@ -97,8 +104,10 @@ function Snake() {
 		this.x = Math.floor(fieldSize/2);
 		this.y = Math.floor(fieldSize/2);
 		score = 1;
-		dir = 42;
+		this.dir = -1;
+        this.ndir = -1;
 		this.tail = [];
+        
 		f.newPos();
 		
 	}
@@ -107,6 +116,10 @@ function Snake() {
 		score++;
 		f.newPos();
 	}
+    
+    this.legalDir = function() {
+        return(!((this.ndir + 2) % 4 == this.dir));
+    }
 }
 
 function Food() {
@@ -117,7 +130,7 @@ function Food() {
 		do{
 			this.x = Math.floor(Math.random() * (fieldSize - 1));
 			this.y = Math.floor(Math.random() * (fieldSize - 1));
-		}while(!this.legalPos)
+		}while(!this.legalPos())
 	}
 
 	this.show = function() {
@@ -129,7 +142,15 @@ function Food() {
 		for(var i = 0; i < s.tail.length; i++) {
 			if(this.x == s.tail[i][0] && this.y == s.tail[i][1])
 				return false;
+                
 			}
 		return true;
 	}
+}
+    
+function printScore() {
+    fill(255);
+    text("Score: " + score,r/4,r);
+    
+
 }
