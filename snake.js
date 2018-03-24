@@ -1,25 +1,33 @@
 //made by paga2004
-var canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight * 0.97 : window.innerWidth * 0.97);
+var canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight : window.innerWidth);
 var fieldSize = 17;
 var r = canvasSize/fieldSize;
 var score = 1;
-
+var c;
 var s = new Snake, f = new Food;
 
 function setup() {
-	createCanvas(canvasSize, canvasSize);
-	setFrameRate(5);
-   textSize(r);
+    c = createCanvas(canvasSize, canvasSize)
+    c.position((windowWidth - width) / 2, (windowHeight - height) / 2);
+    strokeWeight(r/20);
+	setFrameRate(5); 
 }
 
 function draw() {
 	background(0);
-	s.update();
-	
-	s.show();
-	f.show();
-	 
     printScore();
+	
+    s.update();
+    s.show();
+	
+    f.show();
+}
+
+function windowResized() {
+    canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight : window.innerWidth);
+    resizeCanvas(canvasSize, canvasSize);
+    r = canvasSize/fieldSize;
+    c.position((windowWidth - width) / 2, (windowHeight - height) / 2);
 }
 
 function keyPressed() {
@@ -149,6 +157,7 @@ function Food() {
 }
     
 function printScore() {
+    textSize(r);
     fill(255);
     text("Score: " + score,r/4,r);
     
