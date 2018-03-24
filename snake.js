@@ -47,7 +47,12 @@ function keyPressed() {
 	if (keyCode === LEFT_ARROW) {
 		s.ndir = 3;
 	}
-
+	
+	if (keyCode === 32) {
+		if(frameRate == 5)
+			frameRate = 0;
+		else
+			frameRate(0);
 }
 
 
