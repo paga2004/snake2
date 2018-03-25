@@ -4,6 +4,7 @@ var fieldSize = 17;
 var r = canvasSize/fieldSize;
 var score = 1;
 var c;
+var pause = false;
 var s = new Snake, f = new Food;
 
 
@@ -49,10 +50,12 @@ function keyPressed() {
 	}
 	
 	if (keyCode === 32) {
-		if(frameRate == 5)
-			frameRate(0);
+		if(!pause)
+			noLoop();
 		else
-			frameRate(5);
+			loop();
+		
+		pause = !pause
 	}
 }
 
