@@ -50,9 +50,10 @@ function keyPressed() {
 	
 	if (keyCode === 32) {
 		if(frameRate == 5)
-			frameRate = 0;
+			frameRate(0);
 		else
 			frameRate(0);
+	}
 }
 
 
