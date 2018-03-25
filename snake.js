@@ -4,6 +4,7 @@ var fieldSize = 17;
 var r = canvasSize/fieldSize;
 var score = 1;
 var c;
+var pause = false;
 var s = new Snake, f = new Food;
 
 
@@ -47,7 +48,15 @@ function keyPressed() {
 	if (keyCode === LEFT_ARROW) {
 		s.ndir = 3;
 	}
-
+	
+	if (keyCode === 32) {
+		if(!pause)
+			noLoop();
+		else
+			loop();
+		
+		pause = !pause
+	}
 }
 
 
