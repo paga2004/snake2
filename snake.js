@@ -52,7 +52,7 @@ function keyPressed() {
 		if(frameRate == 5)
 			frameRate(0);
 		else
-			frameRate(0);
+			frameRate(5);
 	}
 }
 
