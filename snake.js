@@ -38,9 +38,10 @@ function draw() {
 }
 
 function windowResized() {
-    canvasSize = (window.innerHeight < window.innerWidth ? window.innerHeight : window.innerWidth);
-    resizeCanvas(canvasSize, canvasSize);
-    r = canvasSize/fieldSize;
+    w = window.innerWidth;
+    h = window.innerWidth/2;
+    resizeCanvas(w, h);
+    r = h/fieldSize;
     c.position((windowWidth - width) / 2, (windowHeight - height) / 2);
 }
 
